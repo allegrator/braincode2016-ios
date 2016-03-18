@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		263645BD1C9C7A2C00F7B9CB /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263645BC1C9C7A2C00F7B9CB /* NetworkManager.swift */; };
 		266BA7941C9C76CC00E0C842 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266BA7931C9C76CC00E0C842 /* AppDelegate.swift */; };
 		266BA7961C9C76CC00E0C842 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266BA7951C9C76CC00E0C842 /* ViewController.swift */; };
 		266BA7991C9C76CC00E0C842 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 266BA7971C9C76CC00E0C842 /* Main.storyboard */; };
 		266BA79B1C9C76CC00E0C842 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 266BA79A1C9C76CC00E0C842 /* Assets.xcassets */; };
 		266BA79E1C9C76CC00E0C842 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 266BA79C1C9C76CC00E0C842 /* LaunchScreen.storyboard */; };
 		266BA7A91C9C76CD00E0C842 /* braincode_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266BA7A81C9C76CD00E0C842 /* braincode_iosTests.swift */; };
+		96D473DB658F70CCE4C9BF38 /* Pods_braincode_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A97FF4C0329F0E83EA68943D /* Pods_braincode_ios.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		263645BC1C9C7A2C00F7B9CB /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		266BA7901C9C76CC00E0C842 /* braincode-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "braincode-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		266BA7931C9C76CC00E0C842 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		266BA7951C9C76CC00E0C842 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -36,6 +39,9 @@
 		266BA7A41C9C76CD00E0C842 /* braincode-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "braincode-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		266BA7A81C9C76CD00E0C842 /* braincode_iosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = braincode_iosTests.swift; sourceTree = "<group>"; };
 		266BA7AA1C9C76CD00E0C842 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7D391F7EF957FE333036550B /* Pods-braincode-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-braincode-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-braincode-ios/Pods-braincode-ios.release.xcconfig"; sourceTree = "<group>"; };
+		A97FF4C0329F0E83EA68943D /* Pods_braincode_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_braincode_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE4B66D65A2D043059296A98 /* Pods-braincode-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-braincode-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-braincode-ios/Pods-braincode-ios.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96D473DB658F70CCE4C9BF38 /* Pods_braincode_ios.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,12 +63,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		263645BA1C9C7A0700F7B9CB /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				263645BB1C9C7A1200F7B9CB /* Networking */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		263645BB1C9C7A1200F7B9CB /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				263645BC1C9C7A2C00F7B9CB /* NetworkManager.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		266BA7871C9C76CC00E0C842 = {
 			isa = PBXGroup;
 			children = (
 				266BA7921C9C76CC00E0C842 /* braincode-ios */,
 				266BA7A71C9C76CD00E0C842 /* braincode-iosTests */,
 				266BA7911C9C76CC00E0C842 /* Products */,
+				8B94A849564E2745479E1EF6 /* Pods */,
+				815F2C653D8A61E2A1559EED /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,6 +102,7 @@
 		266BA7921C9C76CC00E0C842 /* braincode-ios */ = {
 			isa = PBXGroup;
 			children = (
+				263645BA1C9C7A0700F7B9CB /* Shared */,
 				266BA7931C9C76CC00E0C842 /* AppDelegate.swift */,
 				266BA7951C9C76CC00E0C842 /* ViewController.swift */,
 				266BA7971C9C76CC00E0C842 /* Main.storyboard */,
@@ -96,6 +122,23 @@
 			path = "braincode-iosTests";
 			sourceTree = "<group>";
 		};
+		815F2C653D8A61E2A1559EED /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A97FF4C0329F0E83EA68943D /* Pods_braincode_ios.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8B94A849564E2745479E1EF6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EE4B66D65A2D043059296A98 /* Pods-braincode-ios.debug.xcconfig */,
+				7D391F7EF957FE333036550B /* Pods-braincode-ios.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -103,9 +146,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 266BA7AD1C9C76CD00E0C842 /* Build configuration list for PBXNativeTarget "braincode-ios" */;
 			buildPhases = (
+				60B79BF65E3950752905673C /* Check Pods Manifest.lock */,
 				266BA78C1C9C76CC00E0C842 /* Sources */,
 				266BA78D1C9C76CC00E0C842 /* Frameworks */,
 				266BA78E1C9C76CC00E0C842 /* Resources */,
+				49FEE9ABDC3203E3A390074C /* Embed Pods Frameworks */,
+				C53790F80B1BB813179F824E /* Copy Pods Resources */,
+				263645B91C9C79B900F7B9CB /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -192,11 +239,74 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		263645B91C9C79B900F7B9CB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "
+";
+		};
+		49FEE9ABDC3203E3A390074C /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-braincode-ios/Pods-braincode-ios-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		60B79BF65E3950752905673C /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C53790F80B1BB813179F824E /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-braincode-ios/Pods-braincode-ios-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		266BA78C1C9C76CC00E0C842 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				263645BD1C9C7A2C00F7B9CB /* NetworkManager.swift in Sources */,
 				266BA7961C9C76CC00E0C842 /* ViewController.swift in Sources */,
 				266BA7941C9C76CC00E0C842 /* AppDelegate.swift in Sources */,
 			);
@@ -327,6 +437,7 @@
 		};
 		266BA7AE1C9C76CD00E0C842 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EE4B66D65A2D043059296A98 /* Pods-braincode-ios.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "braincode-ios/Info.plist";
@@ -338,6 +449,7 @@
 		};
 		266BA7AF1C9C76CD00E0C842 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7D391F7EF957FE333036550B /* Pods-braincode-ios.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "braincode-ios/Info.plist";
@@ -390,6 +502,7 @@
 				266BA7AF1C9C76CD00E0C842 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		266BA7B01C9C76CD00E0C842 /* Build configuration list for PBXNativeTarget "braincode-iosTests" */ = {
 			isa = XCConfigurationList;
@@ -398,6 +511,7 @@
 				266BA7B21C9C76CD00E0C842 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
