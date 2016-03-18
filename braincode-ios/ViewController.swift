@@ -12,11 +12,15 @@ import SwiftyJSON
 
 class ViewController: UIViewController {
 
-    var disposeBag = DisposeBag()
+    private var disposeBag = DisposeBag()
+    private let manager: NetworkManager = NetworkManager()
     private var handlerController: ImageHandlerController!
+    private var senderController: ImageSenderController!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         handlerController = ImageHandlerController(vc: self, processor: BraincodeImageProcessor())
+        senderController = ImageSenderController(manager: manager)
 
     }
     override func viewDidAppear(animated: Bool) {
@@ -32,8 +36,8 @@ class ViewController: UIViewController {
         
     }
 
-    func processImageTaken(image: UIImage) -> Observable<JSON> {
-        return Observable.empty()
+    func processImageTaken(image: UIImage) -> Observable<[ImageRecognizedElementInfo]> {
+        return senderController.uploadImage(image)
     }
 
 

@@ -18,6 +18,7 @@ enum ImageHandlerError: ErrorType, CustomStringConvertible {
 
     case OperationCanceled
     case NoImage
+    case WrongImage
     var description: String {
         return ""
     }

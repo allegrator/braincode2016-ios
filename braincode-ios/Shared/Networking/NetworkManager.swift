@@ -16,6 +16,9 @@ import RxAlamofire
 enum NetworkManagerError: ErrorType, CustomStringConvertible {
 
     case BadResponse(code: Int)
+    case MultipartDataSendFailed(ErrorType)
+    case MultipartResponseFailure(ErrorType)
+    case JSONParsingError
 
     var description: String {
         return ""
@@ -33,6 +36,42 @@ class NetworkManager {
             return baseAddress + self.rawValue
         }
     }
+
+    func sendDataMultipart(data: NSData) -> Observable<JSON> {
+
+        var cancelRequestToken: Request?
+        return Observable.create { observer in
+            Alamofire.upload(
+                .POST,
+                "https://httpbin.org/post",
+                multipartFormData: { multipartFormData in
+                    multipartFormData.appendBodyPart(data: data, name: "img")
+                },
+                encodingCompletion: { encodingResult in
+                    switch encodingResult {
+                    case .Success(let upload, _, _):
+                        cancelRequestToken = upload.responseJSON { response in
+                            switch response.result {
+                            case let .Success(val):
+                                let json = JSON(val)
+                                observer.onNext(json)
+                                observer.onCompleted()
+                            case .Failure(let error):
+                                observer.onError(NetworkManagerError.MultipartDataSendFailed(error))
+                            }
+                        }
+                    case .Failure(let encodingError):
+                        observer.onError(NetworkManagerError.MultipartDataSendFailed(encodingError))
+                    }
+                })
+            return AnonymousDisposable {
+                cancelRequestToken?.cancel()
+            }
+
+        }
+
+    }
+
 
     func basicRequest(endpoint: Endpoint) -> Observable<JSON> {
 
