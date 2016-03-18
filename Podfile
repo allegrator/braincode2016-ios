@@ -7,6 +7,8 @@ target 'braincode-ios' do
 pod 'Alamofire', '~> 3.0'
 pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
 pod 'RxAlamofire'
+pod 'pop', '~> 1.0'
+
 
 
 end

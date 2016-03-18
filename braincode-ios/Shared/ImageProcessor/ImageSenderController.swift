@@ -18,7 +18,7 @@ class ImageSenderController {
     }
 
     func uploadImage(image: UIImage) -> Observable<[ImageRecognizedElementInfo]> {
-        if let representation = UIImageJPEGRepresentation(image, 0.9) {
+        if let representation = UIImagePNGRepresentation(image) {
             return networkManager.sendDataMultipart(representation).flatMap {
                 json -> Observable<[ImageRecognizedElementInfo]> in
                 guard let array = json.array else { return Observable.error(NetworkManagerError.JSONParsingError) }

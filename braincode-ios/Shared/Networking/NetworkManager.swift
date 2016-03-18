@@ -28,6 +28,8 @@ enum NetworkManagerError: ErrorType, CustomStringConvertible {
 class NetworkManager {
     
     private static let baseAddress = "http://10.3.8.27:5000/"
+//    private static let baseAddress = "http://requestb.in/16s4b0p1"
+
 
     enum Endpoint: String {
         case Compute = "compute"
@@ -37,13 +39,13 @@ class NetworkManager {
         }
     }
 
-    func sendDataMultipart(data: NSData) -> Observable<JSON> {
+    func sendDataMultipart(data: NSData, endpoint: Endpoint = .Compute) -> Observable<JSON> {
 
         var cancelRequestToken: Request?
         return Observable.create { observer in
             Alamofire.upload(
                 .POST,
-                "https://httpbin.org/post",
+                endpoint.path,
                 multipartFormData: { multipartFormData in
                     multipartFormData.appendBodyPart(data: data, name: "img")
                 },

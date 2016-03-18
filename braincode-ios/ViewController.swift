@@ -36,8 +36,17 @@ class ViewController: UIViewController {
         
     }
 
-    func processImageTaken(image: UIImage) -> Observable<[ImageRecognizedElementInfo]> {
-        return senderController.uploadImage(image)
+    func processImageTaken(image: UIImage) {
+        senderController.uploadImage(image)
+            .subscribe(onNext: { elements in
+                print(elements)
+                },
+
+                onError: { error in
+                    print(error)
+                }, onCompleted: {
+                    print("req completed")
+            }).addDisposableTo(disposeBag)
     }
 
 
