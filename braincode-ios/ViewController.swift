@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import SwiftyJSON
 
 class ViewController: UIViewController {
 
@@ -15,19 +16,27 @@ class ViewController: UIViewController {
     private var handlerController: ImageHandlerController!
     override func viewDidLoad() {
         super.viewDidLoad()
-        handlerController = ImageHandlerController(vc: self)
+        handlerController = ImageHandlerController(vc: self, processor: BraincodeImageProcessor())
 
     }
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-
+        handlerController.showControllerWithSettings(ImageTakingSettings())
+            .subscribe(onNext: { image in
+                self.processImageTaken(image)
+                }, onError: { error in
+                    print("Error has occured: \(error)")
+                }, onCompleted: {
+                    print("completed")
+            }).addDisposableTo(disposeBag)
         
     }
 
+    func processImageTaken(image: UIImage) -> Observable<JSON> {
+        return Observable.empty()
+    }
 
 
-
-    
     func performBasicRequest() {
         NetworkManager().basicRequest(.Compute)
             .subscribe(onNext: {
@@ -39,17 +48,6 @@ class ViewController: UIViewController {
 
             }).addDisposableTo(disposeBag)
     }
-
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-
-    }
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-
-    }
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-
-    }
-
 
 }
 

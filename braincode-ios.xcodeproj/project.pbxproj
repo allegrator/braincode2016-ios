@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		260568281C9C8D1F00A56875 /* ImageProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260568271C9C8D1F00A56875 /* ImageProcessor.swift */; };
 		260CE6CF1C9C863400FD77B0 /* ImageHandlerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260CE6CE1C9C863400FD77B0 /* ImageHandlerController.swift */; };
 		260CE6D21C9C889600FD77B0 /* FileUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260CE6D11C9C889600FD77B0 /* FileUtilities.swift */; };
+		260CE6D41C9C8FE600FD77B0 /* ImageRecognizedInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260CE6D31C9C8FE600FD77B0 /* ImageRecognizedInfo.swift */; };
 		263645BD1C9C7A2C00F7B9CB /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263645BC1C9C7A2C00F7B9CB /* NetworkManager.swift */; };
 		266BA7941C9C76CC00E0C842 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266BA7931C9C76CC00E0C842 /* AppDelegate.swift */; };
 		266BA7961C9C76CC00E0C842 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266BA7951C9C76CC00E0C842 /* ViewController.swift */; };
@@ -30,8 +32,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		260568271C9C8D1F00A56875 /* ImageProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageProcessor.swift; sourceTree = "<group>"; };
 		260CE6CE1C9C863400FD77B0 /* ImageHandlerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageHandlerController.swift; sourceTree = "<group>"; };
 		260CE6D11C9C889600FD77B0 /* FileUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileUtilities.swift; sourceTree = "<group>"; };
+		260CE6D31C9C8FE600FD77B0 /* ImageRecognizedInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageRecognizedInfo.swift; sourceTree = "<group>"; };
 		263645BC1C9C7A2C00F7B9CB /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		266BA7901C9C76CC00E0C842 /* braincode-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "braincode-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		266BA7931C9C76CC00E0C842 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +75,8 @@
 			isa = PBXGroup;
 			children = (
 				260CE6CE1C9C863400FD77B0 /* ImageHandlerController.swift */,
+				260568271C9C8D1F00A56875 /* ImageProcessor.swift */,
+				260CE6D31C9C8FE600FD77B0 /* ImageRecognizedInfo.swift */,
 			);
 			name = Image;
 			path = ImageProcessor;
@@ -332,7 +338,9 @@
 				260CE6CF1C9C863400FD77B0 /* ImageHandlerController.swift in Sources */,
 				263645BD1C9C7A2C00F7B9CB /* NetworkManager.swift in Sources */,
 				266BA7961C9C76CC00E0C842 /* ViewController.swift in Sources */,
+				260CE6D41C9C8FE600FD77B0 /* ImageRecognizedInfo.swift in Sources */,
 				260CE6D21C9C889600FD77B0 /* FileUtilities.swift in Sources */,
+				260568281C9C8D1F00A56875 /* ImageProcessor.swift in Sources */,
 				266BA7941C9C76CC00E0C842 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

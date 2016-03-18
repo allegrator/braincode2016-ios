@@ -17,6 +17,7 @@ struct ImageTakingSettings {
 enum ImageHandlerError: ErrorType, CustomStringConvertible {
 
     case OperationCanceled
+    case NoImage
     var description: String {
         return ""
     }
@@ -26,12 +27,14 @@ enum ImageHandlerError: ErrorType, CustomStringConvertible {
 @objc class ImageHandlerController: NSObject,  UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
 
+    private let imageProcessor: ImageProcessor
     private let subject: PublishSubject<UIImage>
     private let viewControllerToPresentOn: UIViewController
 
-    init(vc: UIViewController) {
+    init(vc: UIViewController, processor: ImageProcessor) {
         self.subject = PublishSubject()
         self.viewControllerToPresentOn = vc
+        self.imageProcessor = processor
     }
 
     func showControllerWithSettings(settings: ImageTakingSettings) -> Observable<UIImage> {
@@ -45,24 +48,16 @@ enum ImageHandlerError: ErrorType, CustomStringConvertible {
     }
     
 
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-
-    }
     @objc func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        
-//        let savePath:String = sedocumentsPath()! + "/" + self.presentDateTimeString() + ".png"
-//        // try to get our edited image if there is one, as well as the original image
-//        let editedImg:UIImage?   = info[UIImagePickerControllerEditedImage] as? UIImage
-//        let originalImg:UIImage? = info[UIImagePickerControllerOriginalImage] as? UIImage
-//
-//        // create our image data with the edited img if we have one, else use the original image
-//        let imgData:NSData = editedImg == nil ? UIImagePNGRepresentation(editedImg!)! : UIImagePNGRepresentation(originalImg!)!
-//
-//        // write the image data to file
-//        imgData.writeToFile(savePath, atomically: true)
-//
-//        // dismiss the picker
-//        self.dismissViewControllerAnimated(true, completion: nil)
+
+        let originalImg:UIImage? = info[UIImagePickerControllerOriginalImage] as? UIImage
+        if let image = originalImg {
+            let processed = imageProcessor.processImage(image)
+            subject.onNext(processed)
+            subject.onCompleted()
+        } else {
+            subject.onError(ImageHandlerError.NoImage)
+        }
     }
 
     @objc func imagePickerControllerDidCancel(picker: UIImagePickerController) {
