@@ -1,5 +1,7 @@
 PODS:
   - Alamofire (3.2.1)
+  - M13ProgressSuite (1.2.7)
+  - pop (1.0.9)
   - RxAlamofire (2.2):
     - RxAlamofire/Core (= 2.2)
   - RxAlamofire/Core (2.2):
@@ -10,6 +12,8 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 3.0)
+  - M13ProgressSuite
+  - pop (~> 1.0)
   - RxAlamofire
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
 
@@ -24,6 +28,8 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: f11d8624a05f5d39e0c99309b3e600a3ba64298a
+  M13ProgressSuite: 03d194af6359da440641ba758aed5a18b0386a86
+  pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   RxAlamofire: 250b7846cedbd189d6190e4f83caa01ee1f1eceb
   RxSwift: b8a749f2204c6c7a5c29b306a9c3bc11d5b87c5b
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a

@@ -15,7 +15,7 @@ protocol ImageProcessor {
 
 class BraincodeImageProcessor: ImageProcessor {
 
-    let resizingValue = CGSize(width: 800, height: 800)
+    let resizingValue = CGSize(width: 600, height: 800)
     func processImage(image: UIImage) -> UIImage {
         return self.resizeImage(image, toSize: self.resizingValue)
     }

@@ -17,16 +17,20 @@ class ImageSenderController {
         self.networkManager = manager
     }
 
-    func uploadImage(image: UIImage) -> Observable<[ImageRecognizedElementInfo]> {
-        if let representation = UIImagePNGRepresentation(image) {
-            return networkManager.sendDataMultipart(representation).flatMap {
-                json -> Observable<[ImageRecognizedElementInfo]> in
-                guard let array = json.array else { return Observable.error(NetworkManagerError.JSONParsingError) }
-                let mapped = array.flatMap {  ImageRecognizedElementInfo(json: $0) }
-                return Observable.just(mapped)
+    func uploadImage(image: UIImage) -> (Observable<ImageRecognizedElementInfo>, Observable<Double>) {
+        if let representation = UIImageJPEGRepresentation(image, 0.9 ) {
+            let (json, progress) = networkManager.sendDataMultipart(representation)
 
+            let result = json.flatMap {
+                json -> Observable<ImageRecognizedElementInfo> in
+                if let mapped = ImageRecognizedElementInfo(json: json) {
+                    return Observable.just(mapped)
+                } else {
+                    return Observable.error(NetworkManagerError.JSONParsingError)
+                }
             }
+            return (result, progress)
         }
-        return Observable.error(ImageHandlerError.WrongImage)
+        fatalError()
     }
 }

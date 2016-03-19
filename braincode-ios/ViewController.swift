@@ -36,10 +36,14 @@ class ViewController: UIViewController {
         
     }
 
+
+
     func processImageTaken(image: UIImage) {
-        senderController.uploadImage(image)
-            .subscribe(onNext: { elements in
-                print(elements)
+
+        let (json, progress) = senderController.uploadImage(image)
+
+            json.subscribe(onNext: { element in
+                self.handlerController.showOverlay(element.name)
                 },
 
                 onError: { error in
@@ -47,6 +51,20 @@ class ViewController: UIViewController {
                 }, onCompleted: {
                     print("req completed")
             }).addDisposableTo(disposeBag)
+
+
+        progress.subscribeOn(MainScheduler.instance)
+        .subscribe(onNext: { progress  in
+            print("New progress: \(progress)")
+            self.handlerController.updateProgress(progress)
+            },
+
+            onError: { error in
+                print(error)
+            }, onCompleted: {
+                print("req completed")
+        }).addDisposableTo(disposeBag)
+
     }
 
 

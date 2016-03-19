@@ -28,7 +28,7 @@ enum NetworkManagerError: ErrorType, CustomStringConvertible {
 class NetworkManager {
     
     private static let baseAddress = "http://10.3.8.27:5000/"
-//    private static let baseAddress = "http://requestb.in/16s4b0p1"
+//    private static let baseAddress = "http://requestb.in/1as4n891"
 
 
     enum Endpoint: String {
@@ -39,19 +39,26 @@ class NetworkManager {
         }
     }
 
-    func sendDataMultipart(data: NSData, endpoint: Endpoint = .Compute) -> Observable<JSON> {
+    func sendDataMultipart(data: NSData, endpoint: Endpoint = .Compute) -> (Observable<JSON>, Observable<Double>) {
 
         var cancelRequestToken: Request?
-        return Observable.create { observer in
+        let progressSubject = PublishSubject<Double>()
+        let json = Observable.create { (observer: AnyObserver<JSON>)  in
             Alamofire.upload(
                 .POST,
                 endpoint.path,
                 multipartFormData: { multipartFormData in
-                    multipartFormData.appendBodyPart(data: data, name: "img")
+                    multipartFormData.appendBodyPart(data: data, name: "img", fileName: "ios_\(NSDate().timeIntervalSince1970).jpg", mimeType: "image/jpg")
                 },
                 encodingCompletion: { encodingResult in
                     switch encodingResult {
                     case .Success(let upload, _, _):
+
+                        upload.progress { _, written, expected in
+                            let val = Double(written) / Double(expected)
+                            print(val)
+                            progressSubject.onNext(val)
+                        }
                         cancelRequestToken = upload.responseJSON { response in
                             switch response.result {
                             case let .Success(val):
@@ -71,6 +78,7 @@ class NetworkManager {
             }
 
         }
+        return (json, progressSubject)
 
     }
 

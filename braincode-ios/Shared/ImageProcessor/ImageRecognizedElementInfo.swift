@@ -19,14 +19,14 @@ struct Position {
 struct ImageRecognizedElementInfo {
 
     let position: Position?
-    let categoryName: String
+    let name: String
     let categoryId: String?
 }
 extension ImageRecognizedElementInfo {
 
     init?(json: JSON) {
-        guard let name = json["category_name"].string else { return nil }
-        self.categoryName = name
+        guard let name = json["name"].string else { return nil }
+        self.name = name
         self.categoryId = nil
         self.position = nil
     }
