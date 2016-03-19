@@ -26,7 +26,7 @@ enum ImageHandlerError: ErrorType, CustomStringConvertible {
         return ""
     }
 }
-
+//Code not so pretty here ; (((
 
 @objc class ImageHandlerController: NSObject,  UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -97,6 +97,7 @@ enum ImageHandlerError: ErrorType, CustomStringConvertible {
         label.textColor = UIColor.whiteColor()
         label.text = element.name
         label.textAlignment = .Center
+        label.numberOfLines = 0
         view.addSubview(label)
 
         let popAnimation = POPSpringAnimation(propertyNamed: kPOPViewFrame)

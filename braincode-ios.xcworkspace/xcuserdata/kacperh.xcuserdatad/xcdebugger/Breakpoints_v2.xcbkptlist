@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "braincode-ios/Shared/ImageProcessor/ImageHandlerController.swift"
-            timestampString = "480081877.952323"
+            timestampString = "480088389.08381"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180"
+            startingLineNumber = "181"
+            endingLineNumber = "181"
             landmarkName = "ImageHandlerController"
             landmarkType = "3">
          </BreakpointContent>
