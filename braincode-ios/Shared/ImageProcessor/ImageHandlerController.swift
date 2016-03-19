@@ -10,6 +10,8 @@ import UIKit
 import RxSwift
 import pop
 import M13ProgressSuite
+import RxCocoa
+import SafariServices
 
 struct ImageTakingSettings {
 
@@ -32,7 +34,7 @@ enum ImageHandlerError: ErrorType, CustomStringConvertible {
     private let imageProcessor: ImageProcessor
     private let subject: PublishSubject<UIImage>
     private let viewControllerToPresentOn: UIViewController
-
+    private let disposeBag = DisposeBag()
     private var visibleProgress: M13ProgressViewPie?
     var imagePickerController: UIImagePickerController?
 
@@ -71,31 +73,45 @@ enum ImageHandlerError: ErrorType, CustomStringConvertible {
             }
         }
     }
-    func showOverlay(title: String) {
+    var hintView: UIView?
+    var currentElement: ImageRecognizedElementInfo?
+    func showOverlay(element: ImageRecognizedElementInfo) {
 
+        currentElement = element
         guard let controller = imagePickerController else { return }
         let height: CGFloat = 92.0
-
         let controllerView = controller.view
         let view = UIView(frame: CGRectMake(00.0, 0.0, controllerView.frame.width, height))
-
-        view.backgroundColor = UIColor(red:0.23, green:0.60, blue:0.85, alpha:1.00)
+        self.hintView = view
+        if let category = element.categoryId {
+            view.backgroundColor = UIColor(red:0.18, green:0.65, blue:0.37, alpha:1.00)
+            view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "tapOnOverlay:"))
+        } else {
+            view.backgroundColor = UIColor(red:0.23, green:0.60, blue:0.85, alpha:1.00)
+        }
         view.alpha = 1.0
         view.frame.origin.y -= height
         controller.cameraOverlayView?.addSubview(view)
 
         let label = UILabel(frame: view.bounds)
         label.textColor = UIColor.whiteColor()
-        label.text = title
+        label.text = element.name
         label.textAlignment = .Center
         view.addSubview(label)
 
         let popAnimation = POPSpringAnimation(propertyNamed: kPOPViewFrame)
         popAnimation.toValue = NSValue(CGRect:view.frame.translateBy(0, CGFloat(height)))
         popAnimation.springSpeed = 8.0
-        popAnimation.springBounciness = 10.0
+        popAnimation.springBounciness = 13.0
 
         view.pop_addAnimation(popAnimation, forKey: "animationA")
+
+    }
+    func tapOnOverlay(tapGestureRecognizer: UITapGestureRecognizer) {
+        guard let elem = currentElement, catId = elem.categoryId   else { return }
+        let string = "http://www.allegro.pl/gunwo-\(elem.categoryId!)"
+        let svc = SFSafariViewController(URL: NSURL(string: string)!)
+        imagePickerController?.presentViewController(svc, animated: true, completion: nil)
 
     }
     func showControllerWithSettings(settings: ImageTakingSettings) -> Observable<UIImage> {
@@ -104,13 +120,50 @@ enum ImageHandlerError: ErrorType, CustomStringConvertible {
         imagePicker.delegate = self
 
         imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
+        imagePicker.showsCameraControls = false
         viewControllerToPresentOn.presentViewController(imagePicker, animated: true, completion: nil)
         self.imagePickerController = imagePicker
         overlayView.frame = imagePicker.view.bounds
-        overlayView.userInteractionEnabled = false
+        overlayView.userInteractionEnabled = true
+
+
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
+        button.center.x = overlayView.center.x
+        button.frame.origin.y = overlayView.frame.height - 140.0
+        button.setTitle("Take photo", forState: .Normal)
+        button.userInteractionEnabled = false
+        overlayView.addSubview(button)
+
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "tapOnView:")
+        overlayView.addGestureRecognizer(tapGestureRecognizer)
+
         imagePicker.cameraOverlayView = overlayView
 
         return subject
+    }
+    func tapOnView(gestureRecognizer: UITapGestureRecognizer) {
+        takePicture()
+
+    }
+    func takePicture() {
+        if let view = hintView {
+            let popAnimation = POPSpringAnimation(propertyNamed: kPOPViewFrame)
+            popAnimation.toValue = NSValue(CGRect:view.frame.translateBy(0, -CGFloat(view.frame.height)))
+            popAnimation.springSpeed = 18.0
+            popAnimation.springBounciness = 1
+            view.pop_addAnimation(popAnimation, forKey: "animationA")
+            popAnimation.completionBlock = { _, _ in
+                self.hintView?.removeFromSuperview()
+                return
+            }
+        }
+        imagePickerController?.takePicture()
+
+    }
+    private let tappedInfoSubject = PublishSubject<ImageRecognizedElementInfo>()
+
+    func tapInfo() -> Observable<ImageRecognizedElementInfo> {
+        return tappedInfoSubject
     }
     
 
@@ -120,7 +173,6 @@ enum ImageHandlerError: ErrorType, CustomStringConvertible {
         if let image = originalImg {
             let processed = imageProcessor.processImage(image)
             subject.onNext(processed)
-            subject.onCompleted()
         } else {
             subject.onError(ImageHandlerError.NoImage)
         }

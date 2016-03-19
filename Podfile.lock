@@ -7,7 +7,10 @@ PODS:
   - RxAlamofire/Core (2.2):
     - Alamofire (~> 3.1)
     - RxSwift (~> 2.1)
+  - RxCocoa (2.2.0):
+    - RxSwift (~> 2.2)
   - RxSwift (2.2.0)
+  - SnapKit (0.19.1)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
@@ -15,6 +18,8 @@ DEPENDENCIES:
   - M13ProgressSuite
   - pop (~> 1.0)
   - RxAlamofire
+  - RxCocoa
+  - SnapKit
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
 
 EXTERNAL SOURCES:
@@ -31,7 +36,9 @@ SPEC CHECKSUMS:
   M13ProgressSuite: 03d194af6359da440641ba758aed5a18b0386a86
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   RxAlamofire: 250b7846cedbd189d6190e4f83caa01ee1f1eceb
+  RxCocoa: 42efb7a7145a8d1d5878e94ce48a580d29e0c796
   RxSwift: b8a749f2204c6c7a5c29b306a9c3bc11d5b87c5b
+  SnapKit: eff58d6e3451bf2f482db2eccf86aecf371dc62d
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
 COCOAPODS: 0.39.0

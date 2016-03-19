@@ -6,17 +6,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "braincode-ios/Shared/ImageProcessor/ImageHandlerController.swift"
-            timestampString = "480043226.084349"
+            timestampString = "480081877.952323"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
-            landmarkName = "showOverlay(_:)"
-            landmarkType = "5">
+            startingLineNumber = "180"
+            endingLineNumber = "180"
+            landmarkName = "ImageHandlerController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

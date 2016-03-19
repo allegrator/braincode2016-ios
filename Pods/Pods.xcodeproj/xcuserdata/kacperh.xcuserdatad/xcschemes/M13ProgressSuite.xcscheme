@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'C38E5C2EEBAA214A462AB0D3'
+               BlueprintIdentifier = '55F3D844BC132540925CD7A2'
                BlueprintName = 'M13ProgressSuite'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'M13ProgressSuite.framework'>

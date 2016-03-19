@@ -28,12 +28,11 @@ enum NetworkManagerError: ErrorType, CustomStringConvertible {
 class NetworkManager {
     
     private static let baseAddress = "http://10.3.8.27:5000/"
-//    private static let baseAddress = "http://requestb.in/1as4n891"
+//    private static let baseAddress = "http://requestb.in/usw27yus"
 
 
     enum Endpoint: String {
         case Compute = "compute"
-
         var path: String {
             return baseAddress + self.rawValue
         }

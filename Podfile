@@ -9,7 +9,8 @@ pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
 pod 'RxAlamofire'
 pod 'pop', '~> 1.0'
 pod 'M13ProgressSuite'
-
+pod 'RxCocoa'
+pod 'SnapKit'
 
 
 end

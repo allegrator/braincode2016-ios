@@ -87,7 +87,9 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-braincode-ios/Alamofire.framework"
   install_framework "Pods-braincode-ios/M13ProgressSuite.framework"
   install_framework "Pods-braincode-ios/RxAlamofire.framework"
+  install_framework "Pods-braincode-ios/RxCocoa.framework"
   install_framework "Pods-braincode-ios/RxSwift.framework"
+  install_framework "Pods-braincode-ios/SnapKit.framework"
   install_framework "Pods-braincode-ios/SwiftyJSON.framework"
   install_framework "Pods-braincode-ios/pop.framework"
 fi
@@ -95,7 +97,9 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-braincode-ios/Alamofire.framework"
   install_framework "Pods-braincode-ios/M13ProgressSuite.framework"
   install_framework "Pods-braincode-ios/RxAlamofire.framework"
+  install_framework "Pods-braincode-ios/RxCocoa.framework"
   install_framework "Pods-braincode-ios/RxSwift.framework"
+  install_framework "Pods-braincode-ios/SnapKit.framework"
   install_framework "Pods-braincode-ios/SwiftyJSON.framework"
   install_framework "Pods-braincode-ios/pop.framework"
 fi

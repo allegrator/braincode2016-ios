@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import SwiftyJSON
+import SafariServices
 
 class ViewController: UIViewController {
 
@@ -43,7 +44,7 @@ class ViewController: UIViewController {
         let (json, progress) = senderController.uploadImage(image)
 
             json.subscribe(onNext: { element in
-                self.handlerController.showOverlay(element.name)
+                    self.handlerController.showOverlay(element)
                 },
 
                 onError: { error in
